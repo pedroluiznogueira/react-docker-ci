@@ -17,9 +17,9 @@ after_success:
 
 before_deploy:
   - rvm $(travis_internal_ruby) --fuzzy do ruby -S gem install faraday -v 1.8.0
-  
+
 deploy:
   provider: heroku
   api_key:
-    - secure: $SECURE_KEY
-  app: $APP
+    - secure: 8477403e-6c2a-4445-8a62-3a85a1fb7e72
+  app: kardbank
