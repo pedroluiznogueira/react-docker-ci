@@ -8,7 +8,7 @@ before_install:
   - docker build -t pedroluiznogueira/kardbank-react -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true pedroluiznogueira/kardbank-react
+  - docker run -e CI=true pedroluiznogueira/kardbank-react yarn run test
 
 after_success:
   - docker build -t pedroluiznogueira/kardbank-react .
