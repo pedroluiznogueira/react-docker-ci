@@ -4,14 +4,13 @@ services:
   - docker
 
 before_install:
-  - docker build -t pedroluiznogueira/kardbank-react -f Dockerfile.dev .
+  - docker build -t pedroluiznogueira/kardbank-react:"$VERSION" -f Dockerfile.dev .
 
 script:
   - docker run -e CI=true pedroluiznogueira/kardbank-react npm run test -- --watch=false --coverage --passWithNoTests
 
 after_success:
-  - docker build -t pedroluiznogueira/kardbank-react .
-  - docker tag kardbank-react pedroluiznogueira/kardbank-react:"$VERSION"
+  - docker build -t pedroluiznogueira/kardbank-react:"$VERSION" .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
   - docker push pedroluiznogueira/kardbank-react && docker push pedroluiznogueira/kardbank-react:"$VERSION"
 
@@ -21,5 +20,5 @@ before_deploy:
 deploy:
   provider: heroku
   api_key:
-    - secure: 8477403e-6c2a-4445-8a62-3a85a1fb7e72
+    secure: 8477403e-6c2a-4445-8a62-3a85a1fb7e72
   app: kardbank
