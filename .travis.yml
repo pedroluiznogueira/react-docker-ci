@@ -7,8 +7,8 @@ before_install:
   - docker build -t pedroluiznogueira/kardbank-react -f Dockerfile.dev .
 
 script:
-  - docker run -e CI=true pedroluiznogueira/kardbank-react npm run test -- --coverage
-  
+  - docker run -e CI=true pedroluiznogueira/kardbank-react npm run test -- --watch=false --coverage
+
 after_success:
   - docker build -t pedroluiznogueira/kardbank-react .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
