@@ -18,5 +18,5 @@ after_success:
 deploy:
   provider: heroku
   api_key:
-    - secure: "$SECURE_KEY"
-  app: "$APP"
+    - secure: $SECURE_KEY
+  app: $APP
