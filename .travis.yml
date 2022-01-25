@@ -12,4 +12,4 @@ script:
 after_success:
   - docker build -t pedroluiznogueira/kardbank-react .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker push pedroluiznogueira/kardbank-react
+  - docker push pedroluiznogueira/kardbank-react && docker push pedroluiznogueira/kardbank-react:"$VERSION"
