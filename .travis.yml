@@ -2,10 +2,10 @@ sudo: required
 services:
   - docker
 before_install:
-  - docker build -t pedroluiznogueira/karbank-react -f Dockerfile.dev .
+  - docker build -t pedroluiznogueira/kardbank-react -f Dockerfile.dev .
 script:
-  - docker run -e CI=true pedroluiznogueira/karbank-react npm run test
+  - docker run -e CI=true pedroluiznogueira/kardbank-react npm run test -- --coverage
 after_success:
-  - docker build -t pedroluiznogueira/karbank-react .
+  - docker build -t pedroluiznogueira/kardbank-react .
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   - docker push pedroluiznogueira/karbank-react
